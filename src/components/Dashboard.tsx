@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
 
+
 type listFilm = {
     id: number,
     image: string,
@@ -62,13 +63,13 @@ export default function Dashboard() {
 
     function normalizeInput(str: string): string {
         return str
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[A-Z]/g, (match) => match.toLowerCase())
-          .replace(/[.,!?]/g, (match) => ' ' + match + ' ');
-      }
-    
-    const Filter = (event :React.ChangeEvent<HTMLInputElement>) => {
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/[A-Z]/g, (match) => match.toLowerCase())
+            .replace(/[.,!?]/g, (match) => ' ' + match + ' ');
+    }
+
+    const Filter = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRecord(listfilm.filter(f => normalizeInput(f.title).includes(normalizeInput(event.target.value))));
     }
 
@@ -120,14 +121,37 @@ export default function Dashboard() {
         }
     }
 
+     //delete
+     const [open, setOpen] = useState(false)
+     function Deletefilm(id: number | undefined) {
+         console.log(id)
+         try {
+             setOpen(false)
+             // 👇️ const data: getListfilmResponse
+             axios.delete(
+                 `https://664ed99ffafad45dfae143ce.mockapi.io/movie/${id}`
+             ).then(() => {
+                 getListfilm()
+             });
+         } catch (error) {
+             if (axios.isAxiosError(error)) {
+                 console.log('error message: ', error.message);
+                 return error.message;
+             } else {
+                 console.log('unexpected error: ', error);
+                 return 'An unexpected error occurred';
+             }
+         }
+     }
+
     return (
         <>
             <TableContainer component={Paper}>
                 <div className='DbHeader'>
-                <h3>List of movies</h3>
+                    <h3>List of movies</h3>
 
-                <input type='text' className='form-control' placeholder='Search' onChange={Filter}  />
-                 </div>
+                    <input type='text' className='form-control' placeholder='Search' onChange={Filter} />
+                </div>
                 <Table aria-label="collapsible table">
                     <TableHead>
                         <TableRow>
@@ -158,8 +182,7 @@ export default function Dashboard() {
                                     <Tooltip title="Delete">
                                         <IconButton>
                                             <DeleteIcon style={{ color: "pink", cursor: "pointer" }} onClick={() => {
-                                                setId(row.id)
-
+                                                Deletefilm(row.id)
                                             }} />
                                         </IconButton>
                                     </Tooltip>
@@ -234,4 +257,9 @@ export default function Dashboard() {
             </div>
         </>
     );
+
+   
+
+
 }
+
