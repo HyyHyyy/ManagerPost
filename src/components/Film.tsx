@@ -15,7 +15,7 @@ type listFilm = {
 
 export default function Film(): JSX.Element {
 
-    const [listfilm, setListfilm] = useState<listFilm[]>([])
+    const [listfilm, setListfilm] = useState<listFilm[]>([]);
 
     async function getListfilm() {
         try {
