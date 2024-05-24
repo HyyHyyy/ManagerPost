@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -14,6 +14,7 @@ type listFilm = {
 };
 export default function Edit(): JSX.Element {
   const [listfilm, setListfilm] = useState<listFilm[]>([]);
+  const navigate = useNavigate();
 
   async function getListfilm() {
     try {
@@ -111,6 +112,10 @@ export default function Edit(): JSX.Element {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  }
+
   return (
     <>
       <div className="row">
@@ -189,7 +194,6 @@ export default function Edit(): JSX.Element {
                 id="detailImg"
                 type="text"
                 className="validate"
-                required
                 value={detailImg}
                 onChange={(e) => setDetailImg(e.target.value)}
               />
@@ -203,7 +207,6 @@ export default function Edit(): JSX.Element {
                 id="clip"
                 type="text"
                 className="validate"
-                required
                 value={clip}
                 onChange={(e) => setClip(e.target.value)}
               />
@@ -217,6 +220,15 @@ export default function Edit(): JSX.Element {
             className="purple darken-3"
           >
             Update Movie
+          </Button>
+          <Button
+            variant="contained"
+            disableElevation
+            className="purple darken-3"
+            onClick={handleBack}
+            style={{ marginLeft: "10px" }}
+          >
+            Back to dashboard
           </Button>
           <h4 style={{ color: "purple" }}>{success}</h4>
         </form>
