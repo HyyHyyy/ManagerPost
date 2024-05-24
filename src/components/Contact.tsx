@@ -1,4 +1,4 @@
-
+import { Button } from "antd";
 export default function Contact(): JSX.Element {
     return (
         <>
@@ -38,6 +38,9 @@ export default function Contact(): JSX.Element {
                             </div>
                         </div>
                     </div>
+                    <Button type="primary">
+                        Send Message
+                    </Button>
                 </form>
             </div></>
     )
