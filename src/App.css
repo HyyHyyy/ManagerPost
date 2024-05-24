@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.DbHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-control{
+  max-width: max-content;
+  
+}
