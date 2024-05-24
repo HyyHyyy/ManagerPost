@@ -29,7 +29,7 @@ function App(): JSX.Element {
             <Route path='/contact' element={<><Contact /></>}></Route>
             <Route path='/news' element={<><News /></>}></Route>
             <Route path='/dashboard' element={<><Protected><Dashboard /></Protected></>}></Route>
-            <Route path='/edit/:id' element={<><Edit></Edit></>}></Route>
+            <Route path='/edit/:id' element={<><Protected><Edit /></Protected></>}></Route>
           </Routes>
 
         </BrowserRouter>

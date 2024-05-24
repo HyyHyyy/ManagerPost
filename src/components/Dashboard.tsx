@@ -35,7 +35,7 @@ export default function Dashboard() {
         try {
             // 👇️ const data: getListfilmResponse
             await axios.get<listFilm[]>(
-                'https://664ed99ffafad45dfae143ce.mockapi.io/movie',
+                'https://6650a80bec9b4a4a6032e751.mockapi.io/movie',
                 {
                     headers: {
                         Accept: 'application/json',
@@ -89,7 +89,7 @@ export default function Dashboard() {
         try {
             // 👇️ const data: CreateUserResponse
             const { data, status } = await axios.post<listFilm[]>(
-                'https://664ed99ffafad45dfae143ce.mockapi.io/movie',
+                'https://6650a80bec9b4a4a6032e751.mockapi.io/movie',
                 {
                     title: title,
                     image: image,
@@ -129,7 +129,7 @@ export default function Dashboard() {
              setOpen(false)
              // 👇️ const data: getListfilmResponse
              axios.delete(
-                 `https://664ed99ffafad45dfae143ce.mockapi.io/movie/${id}`
+                 `https://6650a80bec9b4a4a6032e751.mockapi.io/movie/${id}`
              ).then(() => {
                  getListfilm()
              });

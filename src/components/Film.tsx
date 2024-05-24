@@ -21,7 +21,7 @@ export default function Film(): JSX.Element {
         try {
             // 👇️ const data: getListfilmResponse
             await axios.get<listFilm[]>(
-                'https://664ed99ffafad45dfae143ce.mockapi.io/movie',
+                'https://6650a80bec9b4a4a6032e751.mockapi.io/movie',
                 {
                     headers: {
                         Accept: 'application/json',
