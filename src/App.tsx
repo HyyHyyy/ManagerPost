@@ -14,6 +14,7 @@ import Protected from './components/protected/Protected';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import { Edit } from '@mui/icons-material';
 
 function App(): JSX.Element {
   return (
@@ -26,10 +27,9 @@ function App(): JSX.Element {
             <Route path='/login' element={<><Login /></>} />
             <Route path='/detail/:id' element={<><Detail /></>}></Route>
             <Route path='/contact' element={<><Contact /></>}></Route>
-
             <Route path='/news' element={<><News /></>}></Route>
             <Route path='/dashboard' element={<><Protected><Dashboard /></Protected></>}></Route>
-
+            <Route path='/edit/:id' element={<><Edit></Edit></>}></Route>
           </Routes>
 
         </BrowserRouter>
