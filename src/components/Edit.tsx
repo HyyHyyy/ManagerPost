@@ -217,14 +217,14 @@ export default function Edit(): JSX.Element {
             type="submit"
             variant="contained"
             disableElevation
-            className="purple darken-3"
+            className="blue darken-3"
           >
             Update Movie
           </Button>
           <Button
             variant="contained"
             disableElevation
-            className="purple darken-3"
+            className="blue darken-3"
             onClick={handleBack}
             style={{ marginLeft: "10px" }}
           >
