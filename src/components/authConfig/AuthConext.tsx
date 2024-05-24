@@ -1,13 +1,13 @@
 import { useContext, createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, User, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
-// import {
-//     Auth,
-//     createUserWithEmailAndPassword,
-//     signInWithEmailAndPassword,
-//     sendPasswordResetEmail,
-// } from 'firebase/auth'
+import { GoogleAuthProvider, UserCredential, User, signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import {
+    Auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+} from 'firebase/auth'
 import { auth } from "../../firebase";
-// import { FC } from "react";
+import { FC } from "react";
 
 type Props = {
     children?: React.ReactNode
@@ -17,11 +17,11 @@ type Context = {
     logOut: () => void,
     user: User | null
 }
-// interface AuthContextModel {
-//     user: User | null
-//     googleSignIn: void
-//     logOut?: void
-// }
+interface AuthContextModel {
+    user: User | null
+    googleSignIn: void
+    logOut?: void
+}
 const AuthContext = createContext<Context>(
     {} as Context,
 );
@@ -34,9 +34,9 @@ export const AuthContextProvider = ({ children }: Props): JSX.Element => {
         signInWithPopup(auth, provider);
     };
 
-    // function signIn(email: string, password: string): Promise<UserCredential> {
-    //     return signInWithEmailAndPassword(auth, email, password)
-    // }
+    function signIn(email: string, password: string): Promise<UserCredential> {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
 
     const logOut = () => {
         signOut(auth)
@@ -61,6 +61,6 @@ export const AuthContextProvider = ({ children }: Props): JSX.Element => {
         </AuthContext.Provider>
     )
 }
-export const UserAuth = (): Context => {
+export const UserAuth = () : Context => {
     return useContext(AuthContext)
 } 
