@@ -42,9 +42,8 @@ export default function Edit(): JSX.Element {
   useEffect(() => {
     getListfilm();
   }, []);
-  const [isOpen, setIsOpen] = useState(false);
   const { id } = useParams();
-  const thisfilm = listfilm?.find((film) => String(film.id) == id);
+  const thisfilm = listfilm?.find((film) => String(film.id) === id);
   //update movie
   const [title, setTitle] = useState<string>();
   const [description, setDescription] = useState<string>();
