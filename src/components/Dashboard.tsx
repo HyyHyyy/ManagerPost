@@ -28,7 +28,6 @@ type listFilm = {
 export default function Dashboard() {
 
     const [listfilm, setListfilm] = useState<listFilm[]>([])
-    const [record, setRecord] = useState<listFilm[]>([])
 
     async function getListfilm() {
         try {
@@ -42,7 +41,6 @@ export default function Dashboard() {
                 },
             ).then(response => {
                 setListfilm(response.data);
-                setRecord(response.data);
             });
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -59,20 +57,6 @@ export default function Dashboard() {
         getListfilm();
     }, []
     )
-
-    function normalizeInput(str: string): string {
-        return str
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[A-Z]/g, (match) => match.toLowerCase())
-          .replace(/[.,!?]/g, (match) => ' ' + match + ' ');
-      }
-    
-    const Filter = (event :React.ChangeEvent<HTMLInputElement>) => {
-        setRecord(listfilm.filter(f => normalizeInput(f.title).includes(normalizeInput(event.target.value))));
-    }
-
-
     //add new movie
     const [id, setId] = useState<number>()
     const [title, setTitle] = useState('')
@@ -123,11 +107,7 @@ export default function Dashboard() {
     return (
         <>
             <TableContainer component={Paper}>
-                <div className='DbHeader'>
                 <h3>List of movies</h3>
-
-                <input type='text' className='form-control' placeholder='Search' onChange={Filter}  />
-                 </div>
                 <Table aria-label="collapsible table">
                     <TableHead>
                         <TableRow>
@@ -141,7 +121,7 @@ export default function Dashboard() {
                     </TableHead>
 
                     <TableBody>
-                        {record.map((row) => (
+                        {listfilm.map((row) => (
 
                             <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                                 <TableCell>
